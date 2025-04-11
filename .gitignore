@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+venv/
+target/
+.env
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+
+# Build files
+dist/
+build/
