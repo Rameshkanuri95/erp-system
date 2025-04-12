@@ -1,4 +1,4 @@
-package com.erp.erp_backend;
+package com.erp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
