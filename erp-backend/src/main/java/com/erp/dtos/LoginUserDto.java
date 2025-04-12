@@ -14,5 +14,12 @@ public class LoginUserDto {
 
     private String password;
 
+    @Override
+    public String toString() {
+        return "LoginUserDto{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
     // getters and setters here...
 }

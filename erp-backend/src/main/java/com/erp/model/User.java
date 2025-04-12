@@ -1,10 +1,10 @@
 package com.erp.model;
+
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -36,9 +36,15 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getName().toString());
+
+        return List.of(authority);
     }
 
     public String getPassword() {
@@ -70,10 +76,26 @@ public class User implements UserDetails {
         return true;
     }
 
-    // Getters and setters
+    public Integer getId() {
+        return id;
+    }
+
+    public User setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
     public User setFullName(String fullName) {
         this.fullName = fullName;
         return this;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public User setEmail(String email) {
@@ -84,5 +106,44 @@ public class User implements UserDetails {
     public User setPassword(String password) {
         this.password = password;
         return this;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public User setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public User setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public User setRole(Role role) {
+        this.role = role;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }
