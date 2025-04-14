@@ -16,22 +16,6 @@ public class RegisterUserDto {
 
     private String fullName;
 
-    public RegisterUserDto setFullName(String fullName) {
-        this.fullName = fullName;
-        return this;
-    }
-
-    public RegisterUserDto setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public RegisterUserDto setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-
     @Override
     public String toString() {
         return "RegisterUserDto{" +
