@@ -29,8 +29,8 @@ public class Account {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_type",nullable = false)
-    private AccountType type;
+    @Column(name = "account_type", nullable = false)
+    private AccountType accountType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")

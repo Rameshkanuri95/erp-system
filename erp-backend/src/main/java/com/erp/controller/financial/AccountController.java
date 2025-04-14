@@ -23,17 +23,22 @@ public class AccountController {
         return new ResponseEntity<>(accountService.createAccount(account), HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<List<Account>> getAllAccounts(){
+    @GetMapping("/{id}")
+    public ResponseEntity<Account> getAccount(@PathVariable Long id) {
+        return ResponseEntity.ok(accountService.getAccountById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Account>> getAllAccounts() {
         return ResponseEntity.ok(accountService.getAllAccounts());
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Account> updateAccount(@PathVariable Long id,@Valid @RequestBody Account accountDetails){
         return ResponseEntity.ok(accountService.updateAccount(id,accountDetails));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable Long id){
         accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();
