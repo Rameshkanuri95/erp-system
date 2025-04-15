@@ -1,5 +1,6 @@
 package com.erp.model.financial;
 
+import com.erp.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,14 @@ public class Account {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updateAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
 
     public enum AccountType{
         ASSET,LIABILTY,EQUITY,REVENUE,EXPENSE
